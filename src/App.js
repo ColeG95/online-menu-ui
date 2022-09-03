@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MenuList from "./components/MenuList";
+import MessageBox from "./components/MessageBox";
+import Cart from "./components/modal/Cart";
+import NavBar from "./components/NavBar";
+import { useState } from "react";
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  function showCartHandler() {
+    setCartIsShown(true);
+  }
+
+  function hideCartHandler() {
+    setCartIsShown(false);
+  }
+
+  const foodItems = [
+    {
+      id: 1,
+      name: "Classic BBQ Sandwhich",
+      description: "Our homestyle pulled pork BBQ with sweet carolina sauce!",
+      price: 15.99,
+    },
+    {
+      id: 2,
+      name: "Steak and Cheese",
+      description: "Juicy grilled steak strips and mozarella cheese... mmmmm",
+      price: 13.99,
+    },
+    {
+      id: 3,
+      name: "Heart Attack on-a-plate",
+      description:
+        "1/2 pound patty stacked with egg, lettuce, tomato, brisket bits, & fried onion. You sure you can handle it?",
+      price: 16.99,
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {cartIsShown && <Cart />}
+      <NavBar title="ReactMeals" showCart={showCartHandler} />
+      <main>
+        <MessageBox title="" messageText="" />
+        <MenuList foodItems={foodItems} />
+      </main>
+    </>
   );
 }
 
