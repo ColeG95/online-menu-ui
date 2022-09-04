@@ -1,8 +1,8 @@
 import "./App.css";
-import MenuList from "./components/MenuList";
-import MessageBox from "./components/MessageBox";
-import Cart from "./components/modal/Cart";
-import NavBar from "./components/NavBar";
+import MenuList from "./MenuList/MenuList";
+import MessageBox from "./MessageBox/MessageBox";
+import Cart from "./modal/Cart";
+import NavBar from "./NavBar/NavBar";
 import { useState } from "react";
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-      {cartIsShown && <Cart />}
+      {cartIsShown && <Cart hideCart={hideCartHandler} />}
       <NavBar title="ReactMeals" showCart={showCartHandler} />
       <main>
         <MessageBox title="" messageText="" />

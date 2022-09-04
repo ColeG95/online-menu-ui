@@ -1,6 +1,6 @@
 import MenuItem from "./MenuItem";
 import classes from "./MenuList.module.css";
-import Card from "./UI/Card";
+import Card from "../UI/Card";
 
 function MenuList(props) {
   return (
