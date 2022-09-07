@@ -1,15 +1,23 @@
 import classes from "./Cart.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../context/cart-context";
 import Modal from "./Modal";
 import CartItem from "./CartItem";
 
 function Cart(props) {
   const cartCtx = useContext(CartContext);
+  const [state, setState] = useState();
 
   function removeItem(item) {
     cartCtx.removeItemHandler(item);
+    setState(Math.random());
   }
+
+  let sum = 0;
+
+  cartCtx.cartItems.forEach((item) => {
+    sum += item.price;
+  });
 
   const cartItems = (
     <ul className={classes.cartItems}>
@@ -18,6 +26,7 @@ function Cart(props) {
           key={item.id}
           name={item.name}
           price={item.price}
+          item={item}
           removeItem={removeItem}
         ></CartItem>
       ))}
@@ -29,7 +38,7 @@ function Cart(props) {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>{sum}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.hideCart}>

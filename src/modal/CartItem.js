@@ -1,16 +1,22 @@
 import classes from "./CartItem.module.css";
 
 function CartItem(props) {
+  function removeItem(event) {
+    event.preventDefault();
+    props.removeItem(props.item);
+  }
+
   return (
-    <li>
+    <li className={classes.CartItem}>
       <div>
-        <div>{props.name}</div>
-        <div>{props.price}</div>
+        <h2>{props.name}</h2>
+        <div className={classes.price}>{props.price}</div>
       </div>
       <div>
-        <button>Remove</button>
+        <button onClick={removeItem} type="button">
+          Remove
+        </button>
       </div>
-      <hr />
     </li>
   );
 }
